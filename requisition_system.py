@@ -136,3 +136,40 @@ class Requisition:
         print("The total number of not approved requisitions:", Requisition.total_not_approved)
         print()
 
+
+# testing - the staff submit requisitions
+
+print("Purchase Requisition System")
+
+# keep adding requisitions until the user says no
+while True:
+    print()
+    req = Requisition()
+    req.add_requisition()
+    req.approve_requisition()
+
+    more = input("Add another requisition? (yes/no): ")
+    if more == "no":
+        break
+
+
+# show the statistics after submitting (before the manager answers)
+print()
+print("Statistics after submitting:")
+req.requisition_statistics()
+
+
+# the manager answers the requisitions that are still pending
+print()
+print("Manager response to pending requisitions")
+for req in all_requisitions:
+    if req.status == "Pending":
+        req.respond_to_requisition()
+
+
+# show all the requisitions and the statistics again
+print()
+req.display_all_requisitions()
+
+print("Statistics:")
+req.requisition_statistics()
